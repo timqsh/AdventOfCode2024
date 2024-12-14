@@ -1,5 +1,0 @@
-first
-console
-app
-input
-file

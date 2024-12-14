@@ -1,4 +1,0 @@
-first line of input
-second line of it
-the third line
-final line
