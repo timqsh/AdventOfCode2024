@@ -13,15 +13,8 @@ internal class Program
         // Horizontal lines
         for (var y = 0; y < height; y++)
         {
-            var right = new List<char>();
-            var left = new List<char>();
-            for (var x = 0; x < width; x++)
-            {
-                right.Add(inputLines[y][x]);
-                left.Add(inputLines[y][width - x - 1]);
-            }
-            linesToCheck.Add(right);
-            linesToCheck.Add(left);
+            linesToCheck.Add(inputLines[y].AsEnumerable().ToList());
+            linesToCheck.Add(inputLines[y].AsEnumerable().Reverse().ToList());
         }
         // Vertical lines
         for (var x = 0; x < width; x++)
@@ -69,13 +62,14 @@ internal class Program
 
 
         var totalCount = 0;
+        var targetSequence = new List<char> { 'X', 'M', 'A', 'S' };
         foreach (var line in linesToCheck)
         {
             for (var i = 0; i < line.Count - 3; i++)
             {
-                if (line[i] == 'X' && line[i + 1] == 'M' && line[i + 2] == 'A' && line[i + 3] == 'S')
+                if (line.Skip(i).Take(4).SequenceEqual(targetSequence))
                 {
-                    totalCount += 1;
+                    totalCount++;
                 }
             }
         }
